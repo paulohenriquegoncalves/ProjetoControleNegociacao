@@ -19,9 +19,11 @@ type
     btnIncluir: TButton;
     btnAlterar: TButton;
     btnExcluir: TButton;
+    btnSair: TButton;
     procedure btnExcluirClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
+    procedure btnSairClick(Sender: TObject);
   private
     { Private declarations }
     FTipoOperacao: TOperacao;
@@ -51,6 +53,11 @@ end;
 procedure TfrmViewPesquisaPadrao.btnIncluirClick(Sender: TObject);
 begin
   FTipoOperacao := tpInclusao;
+end;
+
+procedure TfrmViewPesquisaPadrao.btnSairClick(Sender: TObject);
+begin
+  Self.Close;
 end;
 
 end.
