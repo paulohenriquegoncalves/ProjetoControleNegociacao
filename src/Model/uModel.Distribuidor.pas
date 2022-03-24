@@ -36,7 +36,7 @@ type
 
 implementation
 
-uses uDAO.Distribuidor, uExcessoes;
+uses uDAO.Distribuidor, uExcessoes, uMinhasFuncoes;
 
 { TModelCliente }
 
@@ -82,9 +82,11 @@ end;
 procedure TModelDistribuidor.ValidarAtributos;
 begin
   if FNomeDistribuidor.IsEmpty then
-    raise ENomeDistribuidorObrigatorio.Create('Obrigatório informar o nome do distribuidor');
-  if (FCNPJ.IsEmpty) then
-    raise ECNPJCPFObrigatorio.Create('Obrigatório informar CPF ou CPNJ');
+    raise ENomeDistribuidorObrigatorio.Create('Obrigatório informar o nome do distribuidor')
+  else if (FCNPJ.IsEmpty) then
+    raise ECNPJCPFInvalido.Create('Obrigatório informar CPNJ')
+  else if not CNPJValido(FCNPJ) then
+    raise ECNPJCPFInvalido.Create('CPNJ informado é inválido!');
 end;
 
 end.

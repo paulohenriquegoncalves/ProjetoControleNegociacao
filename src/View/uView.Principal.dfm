@@ -1,7 +1,7 @@
 object frmViewPrincipal: TfrmViewPrincipal
   Left = 0
   Top = 0
-  Caption = 'frmViewPrincipal'
+  Caption = 'Controle de negocia'#231#227'o'
   ClientHeight = 299
   ClientWidth = 635
   Color = clBtnFace

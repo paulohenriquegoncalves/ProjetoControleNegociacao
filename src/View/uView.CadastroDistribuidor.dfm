@@ -7,6 +7,7 @@ inherited frmViewCadastroDistribuidor: TfrmViewCadastroDistribuidor
   TextHeight = 13
   inherited pnlCadastro: TPanel
     Height = 56
+    ExplicitHeight = 56
     object Label11: TLabel
       Left = 10
       Top = 5
@@ -62,5 +63,6 @@ inherited frmViewCadastroDistribuidor: TfrmViewCadastroDistribuidor
   end
   inherited pnlBotores: TPanel
     Top = 56
+    ExplicitTop = 56
   end
 end

@@ -19,7 +19,8 @@ uses
   uDAO.Distribuidor in 'DAO\uDAO.Distribuidor.pas',
   uController.Distribuidor in 'Controller\uController.Distribuidor.pas',
   uView.PesquisaDistribuidor in 'View\uView.PesquisaDistribuidor.pas' {frmViewPesquisaDistribuidor},
-  uView.CadastroDistribuidor in 'View\uView.CadastroDistribuidor.pas' {frmViewCadastroDistribuidor};
+  uView.CadastroDistribuidor in 'View\uView.CadastroDistribuidor.pas' {frmViewCadastroDistribuidor},
+  uMinhasFuncoes in 'Model\uMinhasFuncoes.pas';
 
 {$R *.res}
 
@@ -28,7 +29,5 @@ begin
   Application.MainFormOnTaskbar := True;
   ReportMemoryLeaksOnShutdown := True;
   Application.CreateForm(TfrmViewPrincipal, frmViewPrincipal);
-  Application.CreateForm(TfrmViewPesquisaDistribuidor, frmViewPesquisaDistribuidor);
-  Application.CreateForm(TfrmViewCadastroDistribuidor, frmViewCadastroDistribuidor);
   Application.Run;
 end.

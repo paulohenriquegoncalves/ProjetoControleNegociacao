@@ -34,27 +34,26 @@ uses uView.PesquisaDistribuidor, uExcessoes, uTypes;
 
 procedure TfrmViewCadastroDistribuidor.btnSalvarClick(Sender: TObject);
 begin
-  inherited;
   try
     frmViewPesquisaDistribuidor.controllerDistribuidor.ModelDistribuidor.TipoOperacao        := frmViewPesquisaDistribuidor.TipoOperacao;
     frmViewPesquisaDistribuidor.controllerDistribuidor.ModelDistribuidor.CodigoDistribuidor  := StrToIntDef(edtCodigoDistribuidor.Text,0);
     frmViewPesquisaDistribuidor.controllerDistribuidor.ModelDistribuidor.NomeDistribuidor    := edtNomeDistribuidor.text;
     frmViewPesquisaDistribuidor.controllerDistribuidor.ModelDistribuidor.CNPJ                := mskEdtCNPJ.Text;
 
-    if frmViewPesquisaProduto.controllerProduto.persistir then
+    if frmViewPesquisaDistribuidor.controllerDistribuidor.persistir then
        showmessage('Operação realizada com sucesso!')
      else
        showmessage('Não foi possível realizar a operação!')
   except
-    on E: ENomeProdutoObrigatorio do
+    on E: ENomeDistribuidorObrigatorio do
     begin
-      edtNomeProduto.SetFocus;
+      edtNomeDistribuidor.SetFocus;
       Raise;
     end;
 
-    on E: EPrecoRevendaInvalido do
+    on E: ECNPJCPFInvalido do
     begin
-      edtPrecoVenda.SetFocus;
+      mskEdtCNPJ.SetFocus;
       Raise;
     end;
 
@@ -63,6 +62,7 @@ begin
       raise Exception.Create('Não foi possível realizar a operação!'+E.Message);
     end;
   end;
+  inherited;
 end;
 
 procedure TfrmViewCadastroDistribuidor.FormShow(Sender: TObject);

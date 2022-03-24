@@ -10,7 +10,8 @@ inherited frmViewCadastroProduto: TfrmViewCadastroProduto
   inherited pnlCadastro: TPanel
     Width = 567
     Height = 60
-    ExplicitWidth = 667
+    ExplicitWidth = 567
+    ExplicitHeight = 60
     object Label11: TLabel
       Left = 10
       Top = 5
@@ -65,15 +66,15 @@ inherited frmViewCadastroProduto: TfrmViewCadastroProduto
   inherited pnlBotores: TPanel
     Top = 60
     Width = 567
-    ExplicitWidth = 667
+    ExplicitTop = 60
+    ExplicitWidth = 567
     inherited btnSalvar: TButton
       Left = 254
-      OnClick = btnSalvarClick
-      ExplicitLeft = 467
+      ExplicitLeft = 254
     end
     inherited btnCancelar: TButton
       Left = 410
-      ExplicitLeft = 623
+      ExplicitLeft = 410
     end
   end
 end

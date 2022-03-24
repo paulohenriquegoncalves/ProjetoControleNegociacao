@@ -18,7 +18,7 @@ type
 end;
 
 type
-  ECNPJCPFObrigatorio = class(Exception)
+  ECNPJCPFInvalido = class(Exception)
 end;
 
 implementation
