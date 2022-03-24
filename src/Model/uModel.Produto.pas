@@ -82,7 +82,7 @@ end;
 procedure TModelProduto.ValidarAtributos;
 begin
   if FNomeProduto.IsEmpty then
-    raise ENomeProdutoObrigatorio.Create('Obrigatório informar o nome do produto');
+    raise ENomeObrigatorio.Create('Obrigatório informar o nome do produto');
   if ((FPrecoVendaProduto <= 0) or (FPrecoVendaProduto > 999999)) then
     raise EPrecoRevendaInvalido.Create('Preço de revenda inválido. A faixa de valor é entre R$ 1 e R$ 999.999');
 end;

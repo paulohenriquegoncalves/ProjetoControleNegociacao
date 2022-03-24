@@ -45,7 +45,7 @@ begin
      else
        showmessage('Não foi possível realizar a operação!')
   except
-    on E: ENomeDistribuidorObrigatorio do
+    on E: ENomeObrigatorio do
     begin
       edtNomeDistribuidor.SetFocus;
       Raise;

@@ -29,6 +29,7 @@ object frmViewPrincipal: TfrmViewPrincipal
       end
       object Produtores1: TMenuItem
         Caption = 'Produtores'
+        OnClick = Produtores1Click
       end
     end
     object Negociao1: TMenuItem
