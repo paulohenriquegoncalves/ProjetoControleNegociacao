@@ -62,7 +62,7 @@ begin
    else
      showmessage('Não foi possível realizar a operação!')
   except
-    on E: ENomeProdutoObrigatorio do
+    on E: ENomeObrigatorio do
     begin
       edtNomeProduto.SetFocus;
       Raise;

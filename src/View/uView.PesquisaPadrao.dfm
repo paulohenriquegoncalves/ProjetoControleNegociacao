@@ -44,31 +44,40 @@ object frmViewPesquisaPadrao: TfrmViewPesquisaPadrao
     Align = alBottom
     TabOrder = 1
     object btnIncluir: TButton
-      Left = 1
+      Left = 9
       Top = 5
-      Width = 211
+      Width = 150
       Height = 25
       Caption = '&Incluir'
       TabOrder = 0
       OnClick = btnIncluirClick
     end
     object btnAlterar: TButton
-      Left = 218
-      Top = 6
-      Width = 211
+      Left = 172
+      Top = 5
+      Width = 150
       Height = 25
       Caption = '&Alterar'
       TabOrder = 1
       OnClick = btnAlterarClick
     end
     object btnExcluir: TButton
-      Left = 435
-      Top = 6
-      Width = 211
+      Left = 335
+      Top = 5
+      Width = 150
       Height = 25
       Caption = '&Excluir'
       TabOrder = 2
       OnClick = btnExcluirClick
+    end
+    object btnSair: TButton
+      Left = 496
+      Top = 5
+      Width = 150
+      Height = 25
+      Caption = '&Sair'
+      TabOrder = 3
+      OnClick = btnSairClick
     end
   end
   object dtsTabela: TDataSource

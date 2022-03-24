@@ -82,7 +82,7 @@ end;
 procedure TModelDistribuidor.ValidarAtributos;
 begin
   if FNomeDistribuidor.IsEmpty then
-    raise ENomeDistribuidorObrigatorio.Create('Obrigatório informar o nome do distribuidor')
+    raise ENomeObrigatorio.Create('Obrigatório informar o nome do distribuidor')
   else if (FCNPJ.IsEmpty) then
     raise ECNPJCPFInvalido.Create('Obrigatório informar CPNJ')
   else if not CNPJValido(FCNPJ) then

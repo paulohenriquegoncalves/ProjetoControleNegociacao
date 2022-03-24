@@ -17,6 +17,7 @@ type
     Produtores1: TMenuItem;
     procedure Produtos1Click(Sender: TObject);
     procedure Distribuidores1Click(Sender: TObject);
+    procedure Produtores1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,18 +31,24 @@ implementation
 
 {$R *.dfm}
 
-uses uView.PesquisaProduto, uView.PesquisaDistribuidor;
+uses uView.PesquisaProduto, uView.PesquisaDistribuidor, uView.PesquisaProdutor;
 
 procedure TfrmViewPrincipal.Distribuidores1Click(Sender: TObject);
 begin
-   Application.CreateForm(TfrmViewPesquisaDistribuidor, frmViewPesquisaDistribuidor);
-   frmViewPesquisaDistribuidor.ShowModal;
+  Application.CreateForm(TfrmViewPesquisaDistribuidor, frmViewPesquisaDistribuidor);
+  frmViewPesquisaDistribuidor.ShowModal;
+end;
+
+procedure TfrmViewPrincipal.Produtores1Click(Sender: TObject);
+begin
+  Application.CreateForm(TfrmViewPesquisaProdutor, frmViewPesquisaProdutor);
+  frmViewPesquisaProdutor.ShowModal;
 end;
 
 procedure TfrmViewPrincipal.Produtos1Click(Sender: TObject);
 begin
-   Application.CreateForm(TfrmViewPesquisaProduto, frmViewPesquisaProduto);
-   frmViewPesquisaProduto.ShowModal;
+  Application.CreateForm(TfrmViewPesquisaProduto, frmViewPesquisaProduto);
+  frmViewPesquisaProduto.ShowModal;
 end;
 
 end.

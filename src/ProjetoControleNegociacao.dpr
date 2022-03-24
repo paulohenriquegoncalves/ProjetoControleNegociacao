@@ -20,7 +20,12 @@ uses
   uController.Distribuidor in 'Controller\uController.Distribuidor.pas',
   uView.PesquisaDistribuidor in 'View\uView.PesquisaDistribuidor.pas' {frmViewPesquisaDistribuidor},
   uView.CadastroDistribuidor in 'View\uView.CadastroDistribuidor.pas' {frmViewCadastroDistribuidor},
-  uMinhasFuncoes in 'Model\uMinhasFuncoes.pas';
+  uMinhasFuncoes in 'Model\uMinhasFuncoes.pas',
+  uController.Produtor in 'Controller\uController.Produtor.pas',
+  uDAO.Produtor in 'DAO\uDAO.Produtor.pas',
+  uModel.Produtor in 'Model\uModel.Produtor.pas',
+  uView.CadastroProdutor in 'View\uView.CadastroProdutor.pas' {frmViewCadastroProdutor},
+  uView.PesquisaProdutor in 'View\uView.PesquisaProdutor.pas' {frmViewPesquisaProdutor};
 
 {$R *.res}
 

@@ -146,6 +146,17 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Model\uMinhasFuncoes.pas"/>
+        <DCCReference Include="Controller\uController.Produtor.pas"/>
+        <DCCReference Include="DAO\uDAO.Produtor.pas"/>
+        <DCCReference Include="Model\uModel.Produtor.pas"/>
+        <DCCReference Include="View\uView.CadastroProdutor.pas">
+            <Form>frmViewCadastroProdutor</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="View\uView.PesquisaProdutor.pas">
+            <Form>frmViewPesquisaProdutor</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

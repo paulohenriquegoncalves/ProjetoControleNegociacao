@@ -41,7 +41,7 @@ begin
 
   FDriverFDB.VendorLib := 'fbclient.dll';
   FConexao.Params.DriverID := 'FB';
-  FConexao.Params.Database := 'localhost/3050:C:\ProjetosPaulo\ProjetoDelphi\data\PROJETODELPHI.FDB';
+  FConexao.Params.Database := 'localhost/3050:C:\ProjetosPaulo\ProjetoControleNegociacao\data\PROJETODELPHI.FDB';
   FConexao.Params.UserName := 'SYSDBA';
   FConexao.Params.Password := 'masterkey';
   FConexao.Connected := true;
