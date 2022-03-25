@@ -25,7 +25,9 @@ uses
   uDAO.Produtor in 'DAO\uDAO.Produtor.pas',
   uModel.Produtor in 'Model\uModel.Produtor.pas',
   uView.CadastroProdutor in 'View\uView.CadastroProdutor.pas' {frmViewCadastroProdutor},
-  uView.PesquisaProdutor in 'View\uView.PesquisaProdutor.pas' {frmViewPesquisaProdutor};
+  uView.PesquisaProdutor in 'View\uView.PesquisaProdutor.pas' {frmViewPesquisaProdutor},
+  uView.CadastroLimiteCredito in 'View\uView.CadastroLimiteCredito.pas' {frmViewCadastroLimiteCredito},
+  uView.PesquisaLimiteCredito in 'View\uView.PesquisaLimiteCredito.pas' {frmViewPesquisaLimiteCredito};
 
 {$R *.res}
 
@@ -34,5 +36,7 @@ begin
   Application.MainFormOnTaskbar := True;
   ReportMemoryLeaksOnShutdown := True;
   Application.CreateForm(TfrmViewPrincipal, frmViewPrincipal);
+  Application.CreateForm(TfrmViewCadastroLimiteCredito, frmViewCadastroLimiteCredito);
+  Application.CreateForm(TfrmViewPesquisaLimiteCredito, frmViewPesquisaLimiteCredito);
   Application.Run;
 end.

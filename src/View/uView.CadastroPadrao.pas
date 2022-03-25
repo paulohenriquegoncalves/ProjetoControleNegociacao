@@ -14,6 +14,7 @@ type
     btnCancelar: TButton;
     procedure btnCancelarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
 
@@ -38,6 +39,12 @@ end;
 procedure TfrmViewCadastroPadrao.btnSalvarClick(Sender: TObject);
 begin
   Self.Close;
+end;
+
+procedure TfrmViewCadastroPadrao.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  Self   := Nil;
 end;
 
 end.
