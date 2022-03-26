@@ -49,7 +49,7 @@ begin
   controllerProdutor.ModelProdutor.TipoOperacao  := uTypes.tpExclusao;
   controllerProdutor.ModelProdutor.CodigoProdutor := memTabela.FieldByName('CODProdutor').AsInteger;
 
-  if controllerProdutor.persistir then
+  if controllerProdutor.PersistirProdutor then
   begin
     showmessage('Operação realizada com sucesso!');
     Self.PesquisarProdutores;
@@ -113,7 +113,7 @@ procedure TfrmViewPesquisaProdutor.PesquisarProdutores;
 begin
   inherited;
 
-  qryProdutor := controllerProdutor.selecionar;
+  qryProdutor := controllerProdutor.SelecionarProdutor;
   try
     qryProdutor.FetchAll;
     memTabela.Close;

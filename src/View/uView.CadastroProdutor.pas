@@ -43,7 +43,7 @@ begin
     frmViewPesquisaProdutor.controllerProdutor.ModelProdutor.NomeProdutor    := edtNomeProdutor.text;
     frmViewPesquisaProdutor.controllerProdutor.ModelProdutor.CPFCNPJ         := mskEdtCPFCNPJ.Text;
 
-    if frmViewPesquisaProdutor.controllerProdutor.persistir then
+    if frmViewPesquisaProdutor.controllerProdutor.PersistirProdutor then
        showmessage('Operação realizada com sucesso!')
      else
        showmessage('Não foi possível realizar a operação!')

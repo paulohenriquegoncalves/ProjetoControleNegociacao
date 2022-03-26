@@ -27,7 +27,9 @@ uses
   uView.CadastroProdutor in 'View\uView.CadastroProdutor.pas' {frmViewCadastroProdutor},
   uView.PesquisaProdutor in 'View\uView.PesquisaProdutor.pas' {frmViewPesquisaProdutor},
   uView.CadastroLimiteCredito in 'View\uView.CadastroLimiteCredito.pas' {frmViewCadastroLimiteCredito},
-  uView.PesquisaLimiteCredito in 'View\uView.PesquisaLimiteCredito.pas' {frmViewPesquisaLimiteCredito};
+  uView.PesquisaLimiteCredito in 'View\uView.PesquisaLimiteCredito.pas' {frmViewPesquisaLimiteCredito},
+  uDAO.LimiteCredito in 'DAO\uDAO.LimiteCredito.pas',
+  uModel.LimiteCredito in 'Model\uModel.LimiteCredito.pas';
 
 {$R *.res}
 

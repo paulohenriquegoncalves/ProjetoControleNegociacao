@@ -5,16 +5,14 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uView.CadastroPadrao, Vcl.StdCtrls,
-  Vcl.ExtCtrls, uTypes, Vcl.Mask;
+  Vcl.ExtCtrls, uTypes, Vcl.Mask, Vcl.DBCtrls;
 
 type
   TfrmViewCadastroLimiteCredito = class(TfrmViewCadastroPadrao)
     Label11: TLabel;
-    edtCodigoLimiteCredito: TEdit;
-    Label1: TLabel;
-    edtNomeLimiteCredito: TEdit;
     Label2: TLabel;
     edtPrecoVenda: TEdit;
+    DBComboBox1: TDBComboBox;
     procedure btnSalvarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -58,7 +56,7 @@ begin
 //  frmViewPesquisaProdutor.controllerProdutor.ModelProdutor.NomeLimiteCredito       := edtNomeLimiteCredito.text;
 //  frmViewPesquisaProdutor.controllerProdutor.ModelProdutor.PrecoVendaLimiteCredito := StrToCurrDef(edtPrecoVenda.Text,0);
 
-  if   frmViewPesquisaProdutor.controllerProdutor.persistir then
+  if   frmViewPesquisaProdutor.controllerProdutor.PersistirProdutor then
      showmessage('Operação realizada com sucesso!')
    else
      showmessage('Não foi possível realizar a operação!')

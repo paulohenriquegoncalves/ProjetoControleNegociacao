@@ -15,52 +15,33 @@ inherited frmViewCadastroLimiteCredito: TfrmViewCadastroLimiteCredito
     object Label11: TLabel
       Left = 10
       Top = 5
-      Width = 37
+      Width = 54
       Height = 13
       Alignment = taRightJustify
-      Caption = 'C'#243'digo:'
-    end
-    object Label1: TLabel
-      Left = 55
-      Top = 5
-      Width = 66
-      Height = 13
-      Alignment = taRightJustify
-      Caption = 'LimiteCredito:'
+      Caption = 'Distribuidor'
     end
     object Label2: TLabel
-      Left = 432
+      Left = 439
       Top = 5
-      Width = 79
+      Width = 78
       Height = 13
       Alignment = taRightJustify
-      Caption = 'Pre'#231'o de venda:'
-    end
-    object edtCodigoLimiteCredito: TEdit
-      Left = 10
-      Top = 24
-      Width = 59
-      Height = 21
-      Color = clWhite
-      Enabled = False
-      ReadOnly = True
-      TabOrder = 0
-    end
-    object edtNomeLimiteCredito: TEdit
-      Left = 79
-      Top = 24
-      Width = 343
-      Height = 21
-      MaxLength = 100
-      TabOrder = 1
+      Caption = 'Limite de cr'#233'dito'
     end
     object edtPrecoVenda: TEdit
-      Left = 432
-      Top = 24
+      Left = 435
+      Top = 20
       Width = 119
       Height = 21
       NumbersOnly = True
-      TabOrder = 2
+      TabOrder = 0
+    end
+    object DBComboBox1: TDBComboBox
+      Left = 10
+      Top = 20
+      Width = 407
+      Height = 21
+      TabOrder = 1
     end
   end
   inherited pnlBotores: TPanel
