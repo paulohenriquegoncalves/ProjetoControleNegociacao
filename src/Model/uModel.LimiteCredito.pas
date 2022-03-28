@@ -36,10 +36,10 @@ type
 
     property TipoOperacao: TOperacao         read FTipoOperacao           write FTipoOperacao;
 
-    function persistir: Boolean;
-    function selecionar(piCodigoProdutor:Integer): TFDQuery;
+    function Persistir: Boolean;
+    function Selecionar(piCodigoProdutor:Integer): TFDQuery;
     procedure ValidarAtributos;
-
+    function SelecionarDistribuidoresDisponiveisParaLimiteCredito(piCodigoProdutor:Integer): TFDQuery;
   published
   End;
 
@@ -49,7 +49,7 @@ uses uDAO.LimiteCredito, uExcessoes, uMinhasFuncoes;
 
 { TModelCliente }
 
-function TModelLimiteCredito.persistir: Boolean;
+function TModelLimiteCredito.Persistir: Boolean;
 var
   daoLimiteCredito: TDAOLimiteCredito;
 begin
@@ -76,13 +76,25 @@ begin
   end;
 end;
 
-function TModelLimiteCredito.selecionar(piCodigoProdutor:Integer): TFDQuery;
+function TModelLimiteCredito.Selecionar(piCodigoProdutor:Integer): TFDQuery;
 var
   daoLimiteCredito: TDAOLimiteCredito;
 begin
   daoLimiteCredito := TDAOLimiteCredito.Create;
   try
     result := daoLimiteCredito.SelecionarLimiteCredito(piCodigoProdutor);
+  finally
+    FreeAndNil(daoLimiteCredito);
+  end;
+end;
+
+function TModelLimiteCredito.SelecionarDistribuidoresDisponiveisParaLimiteCredito(piCodigoProdutor: Integer): TFDQuery;
+var
+  daoLimiteCredito: TDAOLimiteCredito;
+begin
+  daoLimiteCredito := TDAOLimiteCredito.Create;
+  try
+    result := daoLimiteCredito.SelecionarDistribuidoresDisponiveisParaLimiteCredito(piCodigoProdutor);
   finally
     FreeAndNil(daoLimiteCredito);
   end;

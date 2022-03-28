@@ -20,7 +20,7 @@ type
     function IncluirLimiteCredito(ModelLimiteCredito: TModelLimiteCredito): Boolean;
     function ExcluirLimiteCredito(ModelLimiteCredito: TModelLimiteCredito): Boolean;
     function AlterarLimiteCredito(ModelLimiteCredito: TModelLimiteCredito): Boolean;
-
+    function SelecionarDistribuidoresDisponiveisParaLimiteCredito(piCodigoProdutor:Integer): TFDQuery;
   published
 
   End;
@@ -61,7 +61,7 @@ begin
   try
     qryLimiteCredito := TControllerConexao.getInstance().daoConexao.CriarQuery;
     try
-      qryLimiteCredito.ExecSQL('DELETE FROM LIMITE_CREDITO WHERE CODPRODUTOR = :CODPRODUTOR AND CODDISTRIBUIDOR = :CODDISTRIBUIDOR', [ModelLimiteCredito.CodigoProdutor, ModelLimiteCredito.CodigoDistribuidor]);
+      qryLimiteCredito.ExecSQL('DELETE FROM TBL_LIMITE_CREDITO WHERE CODPRODUTOR = :CODPRODUTOR AND CODDISTRIBUIDOR = :CODDISTRIBUIDOR', [ModelLimiteCredito.CodigoProdutor, ModelLimiteCredito.CodigoDistribuidor]);
     finally
       FreeAndNil(qryLimiteCredito);
     end;
@@ -80,7 +80,7 @@ begin
   try
     try
       qryLimiteCredito.ExecSQL
-        ('INSERT INTO LIMITE_CREDITO(CODPRODUTOR, CODDISTRIBUIDOR, LIMITE_CREDITO) VALUES(:CODPRODUTOR, :CODDISTRIBUIDOR,:LIMITE_CREDITO)',
+        ('INSERT INTO TBL_LIMITE_CREDITO(CODPRODUTOR, CODDISTRIBUIDOR, LIMITE_CREDITO) VALUES(:CODPRODUTOR, :CODDISTRIBUIDOR,:LIMITE_CREDITO)',
         [ModelLimiteCredito.CodigoProdutor, ModelLimiteCredito.CodigoDistribuidor, ModelLimiteCredito.LimiteCredito]);
       result := True;
     except
@@ -89,6 +89,22 @@ begin
   finally
     qryLimiteCredito.Free;
   end;
+end;
+
+function TDAOLimiteCredito.SelecionarDistribuidoresDisponiveisParaLimiteCredito(piCodigoProdutor: Integer): TFDQuery;
+var
+  qryDistribuidores: TFDQuery;
+begin
+  qryDistribuidores := TControllerConexao.getInstance().daoConexao.CriarQuery;
+  qryDistribuidores.SQL.Add(' SELECT D.CODDISTRIBUIDOR, D.NOMEDISTRIBUIDOR           ');
+  qryDistribuidores.SQL.Add(' FROM TBL_DISTRIBUIDOR D                                 ');
+  qryDistribuidores.SQL.Add(' WHERE NOT EXISTS (SELECT * FROM TBL_LIMITE_CREDITO L    ');
+  qryDistribuidores.SQL.Add('             WHERE L.CODDISTRIBUIDOR = D.CODDISTRIBUIDOR ');
+  qryDistribuidores.SQL.Add(' 			AND   L.CODPRODUTOR = :CODPRODUTOR)                ');
+  qryDistribuidores.ParamByName('CODPRODUTOR').AsInteger := piCodigoProdutor;
+  qryDistribuidores.Open;
+
+  Result := qryDistribuidores;
 end;
 
 function TDAOLimiteCredito.SelecionarLimiteCredito(piCodigoProdutor:Integer): TFDQuery;
