@@ -15,13 +15,11 @@ type
     Label11: TLabel;
     Label2: TLabel;
     edtLimiteCredito: TEdit;
-    dbcbxDistribuidor: TDBComboBox;
     dtsDistribuidor: TDataSource;
     memTblDistribuidor: TFDMemTable;
     memTblDistribuidorCODDISTRIBUIDOR: TIntegerField;
     memTblDistribuidorNOMEDISTRIBUIDOR: TWideStringField;
-    DBGrid1: TDBGrid;
-    SpeedButton1: TSpeedButton;
+    dbcbxDistribuidor: TDBLookupComboBox;
     procedure btnSalvarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -77,8 +75,8 @@ begin
   end
   else
   begin
-      dbcbxDistribuidor.Enabled := True;
-      edtLimiteCredito.Text     := CurrToStr(frmViewPesquisaLimiteCredito.memTabela.FieldByName('LIMITE_CREDITO').AsCurrency);
+    dbcbxDistribuidor.Enabled   := False;
+    edtLimiteCredito.Text       := CurrToStr(frmViewPesquisaLimiteCredito.memTabela.FieldByName('LIMITE_CREDITO').AsCurrency);
   end;
 end;
 
@@ -87,11 +85,12 @@ begin
   try
   frmViewPesquisaProdutor.controllerProdutor.ModelLimiteCredito.TipoOperacao       := frmViewPesquisaLimiteCredito.TipoOperacao;
   frmViewPesquisaProdutor.controllerProdutor.ModelLimiteCredito.CodigoProdutor     := frmViewPesquisaLimiteCredito.memTabela.FieldByName('CODPRODUTOR').AsInteger;
- {
+
   if frmViewPesquisaLimiteCredito.TipoOperacao = tpInclusao then
-    frmViewPesquisaProdutor.controllerProdutor.ModelLimiteCredito.CodigoDistribuidor := 1;
+    frmViewPesquisaProdutor.controllerProdutor.ModelLimiteCredito.CodigoDistribuidor := VarToStr(dbcbxDistribuidor.KeyValue).ToInteger
   else
-}
+    frmViewPesquisaProdutor.controllerProdutor.ModelLimiteCredito.CodigoDistribuidor := frmViewPesquisaLimiteCredito.memTabela.FieldByName('CODDISTRIBUIDOR').AsInteger;
+
   frmViewPesquisaProdutor.controllerProdutor.ModelLimiteCredito.LimiteCredito      := StrToCurrDef(edtLimiteCredito.Text,0);
 
   if   frmViewPesquisaProdutor.controllerProdutor.PersistirLimiteCredito then
