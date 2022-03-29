@@ -24,6 +24,7 @@ type
     procedure btnAlterarClick(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
     procedure btnSairClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     FTipoOperacao: TOperacao;
@@ -58,6 +59,12 @@ end;
 procedure TfrmViewPesquisaPadrao.btnSairClick(Sender: TObject);
 begin
   Self.Close;
+end;
+
+procedure TfrmViewPesquisaPadrao.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  Self   := Nil;
 end;
 
 end.

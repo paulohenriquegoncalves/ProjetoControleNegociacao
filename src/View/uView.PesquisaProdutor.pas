@@ -19,6 +19,7 @@ type
     procedure btnAlterarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure btnLimiteCreditoClick(Sender: TObject);
   private
     { Private declarations }
     procedure PesquisarProdutores;
@@ -36,7 +37,7 @@ implementation
 
 {$R *.dfm}
 
-uses uView.CadastroProdutor;
+uses uView.CadastroProdutor, uView.PesquisaLimiteCredito;
 
 { TfrmViewPesquisaProdutor }
 
@@ -48,7 +49,7 @@ begin
   controllerProdutor.ModelProdutor.TipoOperacao  := uTypes.tpExclusao;
   controllerProdutor.ModelProdutor.CodigoProdutor := memTabela.FieldByName('CODProdutor').AsInteger;
 
-  if controllerProdutor.persistir then
+  if controllerProdutor.PersistirProdutor then
   begin
     showmessage('Operação realizada com sucesso!');
     Self.PesquisarProdutores;
@@ -69,6 +70,13 @@ procedure TfrmViewPesquisaProdutor.btnIncluirClick(Sender: TObject);
 begin
   inherited;
   Self.ExibirProdutor;
+end;
+
+procedure TfrmViewPesquisaProdutor.btnLimiteCreditoClick(Sender: TObject);
+begin
+  inherited;
+  Application.CreateForm(TfrmViewPesquisaLimiteCredito, frmViewPesquisaLimiteCredito);
+  frmViewPesquisaLimiteCredito.ShowModal;
 end;
 
 procedure TfrmViewPesquisaProdutor.btnAlterarClick(Sender: TObject);
@@ -105,7 +113,7 @@ procedure TfrmViewPesquisaProdutor.PesquisarProdutores;
 begin
   inherited;
 
-  qryProdutor := controllerProdutor.selecionar;
+  qryProdutor := controllerProdutor.SelecionarProdutor;
   try
     qryProdutor.FetchAll;
     memTabela.Close;
