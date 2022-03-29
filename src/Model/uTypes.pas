@@ -4,7 +4,7 @@ interface
 
 Type
    TOperacao = (tpInclusao, tpExclusao, tpAlteracao);
-   TStatus   = (tpPendente, tpAprovado, tpConcluido, tpCancelado);
+   TStatus   = (tpPendente, tpAprovado, tpConcluido, tpCancelado, tpTodos);
 implementation
 
 end.

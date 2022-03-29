@@ -17,7 +17,7 @@ type
 
   public
 
-    function SelecionarNegociacao: TFDQuery;
+    function SelecionarNegociacao(ModelNegociacao: TModelNegociacao): TFDQuery;
     function Incluir(ModelNegociacao: TModelNegociacao): Boolean;
     function Excluir(ModelNegociacao: TModelNegociacao): Boolean;
     function Alterar(ModelNegociacao: TModelNegociacao): Boolean;
@@ -29,7 +29,7 @@ type
 implementation
 
 uses
-  Vcl.Dialogs, uMinhasFuncoes;
+  Vcl.Dialogs, uMinhasFuncoes, uTypes;
 
 { TModelCliente }
 
@@ -93,12 +93,64 @@ begin
   end;
 end;
 
-function TDAONegociacao.SelecionarNegociacao: TFDQuery;
+function TDAONegociacao.SelecionarNegociacao(ModelNegociacao: TModelNegociacao): TFDQuery;
 var
   qryNegociacao: TFDQuery;
 begin
   qryNegociacao := TControllerConexao.getInstance().daoConexao.CriarQuery;
-  qryNegociacao.Open('SELECT * FROM TBL_Negociacao ORDER BY CODNegociacao');
+
+  qryNegociacao.SQL.Add(' SELECT                                                                        ');
+  qryNegociacao.SQL.Add('  N.IDNEGOCIACAO,                                                              ');
+  qryNegociacao.SQL.Add('  N.CODPRODUTOR, P.NOMEPRODUTOR,                                               ');
+  qryNegociacao.SQL.Add('  N.CODDISTRIBUIDOR, D.NOMEDISTRIBUIDOR,                                       ');
+  qryNegociacao.SQL.Add('  N.STATUS, N.DATA_NEGOCIACAO,                                                 ');
+
+  qryNegociacao.SQL.Add('   (SELECT SUM(I.QUANTIDADE * PO.PRECOVENDAPRODUTO)                            ');
+  qryNegociacao.SQL.Add('    FROM TBL_NEGOCIACAO_ITENS I                                                ');
+  qryNegociacao.SQL.Add('    INNER JOIN TBL_PRODUTO PO ON I.CODPRODUTO = PO.CODPRODUTO                  ');
+  qryNegociacao.SQL.Add('    WHERE I.IDNEGOCIACAO = N.IDNEGOCIACAO) AS TOTAL_NEGOCIACAO,                ');
+
+  qryNegociacao.SQL.Add(' 	(SELECT LIMITE_CREDITO                                                      ');
+  qryNegociacao.SQL.Add(' 	 FROM TBL_LIMITE_CREDITO L                                                  ');
+  qryNegociacao.SQL.Add('    WHERE L.CODPRODUTOR    = N.CODPRODUTOR                                     ');
+  qryNegociacao.SQL.Add(' 	 AND   L.CODDISTRIBUIDOR = N.CODDISTRIBUIDOR) AS LIMITE_CREDITO_CADASTRADO, ');
+
+  qryNegociacao.SQL.Add('	  (SELECT SUM(I.QUANTIDADE * PO.PRECOVENDAPRODUTO)                            ');
+  qryNegociacao.SQL.Add('	   FROM TBL_NEGOCIACAO_ITENS I                                                ');
+  qryNegociacao.SQL.Add('	   INNER JOIN TBL_PRODUTO PO ON I.CODPRODUTO = PO.CODPRODUTO                  ');
+  qryNegociacao.SQL.Add('	   WHERE EXISTS (SELECT 1 FROM TBL_NEGOCIACAO N2                              ');
+  qryNegociacao.SQL.Add('	                 WHERE N2.CODPRODUTOR     = N.CODPRODUTOR                     ');
+  qryNegociacao.SQL.Add('	                 AND   N2.CODDISTRIBUIDOR = N.CODDISTRIBUIDOR                 ');
+  qryNegociacao.SQL.Add('                     AND   N2.IDNEGOCIACAO    = I.IDNEGOCIACAO                 ');
+  qryNegociacao.SQL.Add('                     AND   N2.STATUS = ''AP'')) AS VENDAS_APROVADAS            ');
+
+  qryNegociacao.SQL.Add(' FROM TBL_NEGOCIACAO N                                                         ');
+  qryNegociacao.SQL.Add(' INNER JOIN TBL_PRODUTOR P     ON N.CODPRODUTOR     = P.CODPRODUTOR            ');
+  qryNegociacao.SQL.Add(' INNER JOIN TBL_DISTRIBUIDOR D ON N.CODDISTRIBUIDOR = D.CODDISTRIBUIDOR        ');
+  qryNegociacao.SQL.Add(' WHERE 1 = 1                                                                   ');
+
+  if (ModelNegociacao.CodigoDistribuidor > 0) then
+  begin
+    qryNegociacao.SQL.Add(' AND N.CODDISTRIBUIDOR = :CODDISTRIBUIDOR');
+    qryNegociacao.ParamByName('CODDISTRIBUIDOR').AsInteger :=  ModelNegociacao.CodigoDistribuidor;
+  end;
+
+  if (ModelNegociacao.CodigoProdutor > 0) then
+  begin
+    qryNegociacao.SQL.Add(' AND N.CODPRODUTOR = :CODPRODUTOR');
+    qryNegociacao.ParamByName('CODPRODUTOR').AsInteger :=  ModelNegociacao.CodigoProdutor;
+  end;
+
+
+  if ModelNegociacao.Status <> tpTodos then
+  begin
+    qryNegociacao.SQL.Add(' AND N.STATUS = :STATUS');
+    qryNegociacao.ParamByName('STATUS').AsString :=  TStatusToString( ModelNegociacao.Status);
+  end;
+
+  qryNegociacao.SQL.SaveToFile('C:\Temp\CONSULTA_NEGOCIACAO.SQL');
+  qryNegociacao.Open;
+
   result := qryNegociacao;
 end;
 

@@ -2,8 +2,8 @@ object frmViewPrincipal: TfrmViewPrincipal
   Left = 0
   Top = 0
   Caption = 'Controle de negocia'#231#227'o'
-  ClientHeight = 299
-  ClientWidth = 635
+  ClientHeight = 442
+  ClientWidth = 923
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,6 +12,7 @@ object frmViewPrincipal: TfrmViewPrincipal
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  WindowState = wsMaximized
   PixelsPerInch = 96
   TextHeight = 13
   object MainMenu1: TMainMenu
@@ -34,6 +35,10 @@ object frmViewPrincipal: TfrmViewPrincipal
     end
     object Negociao1: TMenuItem
       Caption = 'Negocia'#231#227'o'
+      object NegociaoProdutorDistribuidor1: TMenuItem
+        Caption = 'Negocia'#231#227'o Produtor / Distribuidor'
+        OnClick = NegociaoProdutorDistribuidor1Click
+      end
     end
     object Relatrios1: TMenuItem
       Caption = 'Relat'#243'rios'

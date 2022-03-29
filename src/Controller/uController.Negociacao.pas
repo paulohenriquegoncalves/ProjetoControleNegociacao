@@ -49,7 +49,7 @@ end;
 
 function TControllerNegociacao.SelecionarNegociacao: TFDQuery;
 begin
-  Result := FModelNegociacao.selecionar;
+  Result := FModelNegociacao.Selecionar;
 end;
 
 

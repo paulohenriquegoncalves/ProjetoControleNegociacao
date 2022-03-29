@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Grids,
   Vcl.DBGrids, Vcl.ExtCtrls, uController.Conexao, uController.Negociacao, uTypes,
-  Vcl.DBCtrls;
+  Vcl.DBCtrls, uController.Produtor, uController.Distribuidor;
 
 type
   TfrmViewPesquisaNegociacao = class(TfrmViewPesquisaPadrao)
@@ -17,15 +17,24 @@ type
     btnPesquisar: TButton;
     Label11: TLabel;
     dbcbxDistribuidor: TDBLookupComboBox;
-    DBLookupComboBox1: TDBLookupComboBox;
-    RadioGroup1: TRadioGroup;
+    dbcbxProdutor: TDBLookupComboBox;
+    rdgStatus: TRadioGroup;
     Label1: TLabel;
+    dtsDistribuidor: TDataSource;
+    memTblDistribuidor: TFDMemTable;
+    memTblDistribuidorCODDISTRIBUIDOR: TIntegerField;
+    memTblDistribuidorNOMEDISTRIBUIDOR: TWideStringField;
+    dtsProdutor: TDataSource;
+    memTblProdutor: TFDMemTable;
+    IntegerField1: TIntegerField;
+    WideStringField1: TWideStringField;
     procedure btnExcluirClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     procedure PesquisarNegociacao;
@@ -34,6 +43,12 @@ type
     { Public declarations }
      qryNegociacao: TFDQuery;
      controllerNegociacao: TControllerNegociacao;
+
+     qryProdutor: TFDQuery;
+     controllerProdutor: TControllerProdutor;
+
+     qryDistribuidor: TFDQuery;
+     controllerDistribuidor: TControllerDistribuidor;
   end;
 
 var
@@ -44,10 +59,73 @@ implementation
 
 {$R *.dfm}
 
+
+
 //uses uView.CadastroNegociacao;
 
 { TfrmViewPesquisaNegociacao }
 
+procedure TfrmViewPesquisaNegociacao.FormCreate(Sender: TObject);
+begin
+  inherited;
+
+  controllerProdutor := TControllerProdutor.Create;
+  qryProdutor        := TFDQuery.Create(frmViewPesquisaNegociacao);
+
+  controllerDistribuidor := TControllerDistribuidor.Create;
+  qryDistribuidor        := TFDQuery.Create(frmViewPesquisaNegociacao);
+
+  controllerNegociacao := TControllerNegociacao.Create;
+  qryNegociacao        := TFDQuery.Create(frmViewPesquisaNegociacao);
+end;
+
+procedure TfrmViewPesquisaNegociacao.FormDestroy(Sender: TObject);
+begin
+  inherited;
+
+  if Assigned(qryNegociacao) then
+    FreeAndNil(qryNegociacao);
+
+  if Assigned(controllerNegociacao) then
+    FreeAndNil(controllerNegociacao);
+
+  if Assigned(qryProdutor) then
+    FreeAndNil(qryProdutor);
+
+  if Assigned(controllerProdutor) then
+    FreeAndNil(controllerProdutor);
+
+  if Assigned(qryDistribuidor) then
+    FreeAndNil(qryDistribuidor);
+
+  if Assigned(controllerDistribuidor) then
+    FreeAndNil(controllerDistribuidor);
+end;
+
+procedure TfrmViewPesquisaNegociacao.FormShow(Sender: TObject);
+begin
+  inherited;
+  qryDistribuidor := Self.controllerDistribuidor.ModelDistribuidor.selecionar;
+  try
+    qryDistribuidor.FetchAll;
+    memTblDistribuidor.Close;
+    memTblDistribuidor.Data := qryDistribuidor.Data;
+    memTblDistribuidor.First;
+  finally
+    qryDistribuidor.Close;
+  end;
+
+
+  qryProdutor := Self.controllerProdutor.ModelProdutor.selecionar;
+  try
+    qryProdutor.FetchAll;
+    memTblProdutor.Close;
+    memTblProdutor.Data := qryProdutor.Data;
+    memTblProdutor.First;
+  finally
+    qryProdutor.Close;
+  end;
+end;
 
 procedure TfrmViewPesquisaNegociacao.btnExcluirClick(Sender: TObject);
 begin
@@ -80,40 +158,21 @@ begin
   Self.ExibirNegociacao;
 end;
 
-procedure TfrmViewPesquisaNegociacao.btnAlterarClick(Sender: TObject);
+procedure TfrmViewPesquisaNegociacao.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
-  Self.ExibirNegociacao;
-end;
+  //FILTROS PARA BUSCAR NEGOCIAÇÃO
+  controllerNegociacao.ModelNegociacao.CodigoDistribuidor := VarToStrDef(dbcbxDistribuidor.KeyValue,'0').ToInteger;
+  controllerNegociacao.ModelNegociacao.CodigoProdutor     := VarToStrDef(dbcbxProdutor.KeyValue,'0').ToInteger;
+  case rdgStatus.ItemIndex of
+    0: controllerNegociacao.ModelNegociacao.Status        := tpPendente;
+    1: controllerNegociacao.ModelNegociacao.Status        := tpAprovado;
+    2: controllerNegociacao.ModelNegociacao.Status        := tpConcluido;
+    3: controllerNegociacao.ModelNegociacao.Status        := tpCancelado;
+    4: controllerNegociacao.ModelNegociacao.Status        := tpTodos;
+  end;
 
-procedure TfrmViewPesquisaNegociacao.FormCreate(Sender: TObject);
-begin
-  inherited;
-  controllerNegociacao := TControllerNegociacao.Create;
-  qryNegociacao        := TFDQuery.Create(frmViewPesquisaNegociacao);
-end;
-
-procedure TfrmViewPesquisaNegociacao.FormDestroy(Sender: TObject);
-begin
-  inherited;
-
-  if Assigned(qryNegociacao) then
-    FreeAndNil(qryNegociacao);
-
-  if Assigned(controllerNegociacao) then
-    FreeAndNil(controllerNegociacao);
-end;
-
-procedure TfrmViewPesquisaNegociacao.FormShow(Sender: TObject);
-begin
-  inherited;
-  Self.PesquisarNegociacao;
-end;
-
-procedure TfrmViewPesquisaNegociacao.PesquisarNegociacao;
-begin
-  inherited;
-
+  //CONSULTANDO NEGOCIACAO
   qryNegociacao := controllerNegociacao.SelecionarNegociacao;
   try
     qryNegociacao.FetchAll;
@@ -122,6 +181,17 @@ begin
   finally
     qryNegociacao.Close;
   end;
+end;
+
+procedure TfrmViewPesquisaNegociacao.btnAlterarClick(Sender: TObject);
+begin
+  inherited;
+  Self.ExibirNegociacao;
+end;
+
+procedure TfrmViewPesquisaNegociacao.PesquisarNegociacao;
+begin
+  inherited;
 
 end;
 

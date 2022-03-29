@@ -15,9 +15,11 @@ type
     Produtos1: TMenuItem;
     Distribuidores1: TMenuItem;
     Produtores1: TMenuItem;
+    NegociaoProdutorDistribuidor1: TMenuItem;
     procedure Produtos1Click(Sender: TObject);
     procedure Distribuidores1Click(Sender: TObject);
     procedure Produtores1Click(Sender: TObject);
+    procedure NegociaoProdutorDistribuidor1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,12 +33,19 @@ implementation
 
 {$R *.dfm}
 
-uses uView.PesquisaProduto, uView.PesquisaDistribuidor, uView.PesquisaProdutor;
+uses uView.PesquisaProduto, uView.PesquisaDistribuidor, uView.PesquisaProdutor,
+  uView.PesquisaNegociacao;
 
 procedure TfrmViewPrincipal.Distribuidores1Click(Sender: TObject);
 begin
   Application.CreateForm(TfrmViewPesquisaDistribuidor, frmViewPesquisaDistribuidor);
   frmViewPesquisaDistribuidor.ShowModal;
+end;
+
+procedure TfrmViewPrincipal.NegociaoProdutorDistribuidor1Click(Sender: TObject);
+begin
+  Application.CreateForm(TfrmViewPesquisaNegociacao, frmViewPesquisaNegociacao);
+  frmViewPesquisaNegociacao.ShowModal;
 end;
 
 procedure TfrmViewPrincipal.Produtores1Click(Sender: TObject);

@@ -70,13 +70,13 @@ begin
   end;
 end;
 
-function TModelNegociacao.selecionar: TFDQuery;
+function TModelNegociacao.Selecionar: TFDQuery;
 var
   daoNegociacao: TDAONegociacao;
 begin
   daoNegociacao := TDAONegociacao.Create;
   try
-    result := daoNegociacao.SelecionarNegociacao;
+    result := daoNegociacao.SelecionarNegociacao(Self);
   finally
     FreeAndNil(daoNegociacao);
   end;
