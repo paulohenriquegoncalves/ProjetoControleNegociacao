@@ -10,6 +10,7 @@ inherited frmViewCadastroProdutor: TfrmViewCadastroProdutor
   inherited pnlCadastro: TPanel
     Width = 669
     Height = 57
+    ExplicitWidth = 669
     ExplicitHeight = 56
     object Label11: TLabel
       Left = 10
@@ -70,6 +71,7 @@ inherited frmViewCadastroProdutor: TfrmViewCadastroProdutor
       Height = 21
       ItemIndex = 0
       TabOrder = 3
+      Text = 'CPF'
       OnChange = cbxCPFCNPJChange
       Items.Strings = (
         'CPF'
@@ -80,11 +82,14 @@ inherited frmViewCadastroProdutor: TfrmViewCadastroProdutor
     Top = 57
     Width = 669
     ExplicitTop = 56
+    ExplicitWidth = 669
     inherited btnSalvar: TButton
       Left = 356
+      ExplicitLeft = 356
     end
     inherited btnCancelar: TButton
       Left = 512
+      ExplicitLeft = 512
     end
   end
 end

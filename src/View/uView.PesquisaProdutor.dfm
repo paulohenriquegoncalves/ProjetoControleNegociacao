@@ -9,12 +9,14 @@ inherited frmViewPesquisaProdutor: TfrmViewPesquisaProdutor
   TextHeight = 13
   inherited pnlGrid: TPanel
     Width = 825
+    ExplicitWidth = 825
     inherited DBGrid1: TDBGrid
       Width = 823
     end
   end
   inherited pnlBotores: TPanel
     Width = 825
+    ExplicitWidth = 825
     inherited btnSair: TButton
       Left = 661
       ExplicitLeft = 661
@@ -26,6 +28,7 @@ inherited frmViewPesquisaProdutor: TfrmViewPesquisaProdutor
       Height = 25
       Caption = '&Limite de cr'#233'dito'
       TabOrder = 4
+      OnClick = btnLimiteCreditoClick
     end
   end
 end

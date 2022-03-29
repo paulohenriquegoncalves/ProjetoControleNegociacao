@@ -11,6 +11,7 @@ object frmViewPesquisaPadrao: TfrmViewPesquisaPadrao
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object pnlGrid: TPanel

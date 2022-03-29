@@ -25,7 +25,15 @@ uses
   uDAO.Produtor in 'DAO\uDAO.Produtor.pas',
   uModel.Produtor in 'Model\uModel.Produtor.pas',
   uView.CadastroProdutor in 'View\uView.CadastroProdutor.pas' {frmViewCadastroProdutor},
-  uView.PesquisaProdutor in 'View\uView.PesquisaProdutor.pas' {frmViewPesquisaProdutor};
+  uView.PesquisaProdutor in 'View\uView.PesquisaProdutor.pas' {frmViewPesquisaProdutor},
+  uView.CadastroLimiteCredito in 'View\uView.CadastroLimiteCredito.pas' {frmViewCadastroLimiteCredito},
+  uView.PesquisaLimiteCredito in 'View\uView.PesquisaLimiteCredito.pas' {frmViewPesquisaLimiteCredito},
+  uDAO.LimiteCredito in 'DAO\uDAO.LimiteCredito.pas',
+  uModel.LimiteCredito in 'Model\uModel.LimiteCredito.pas',
+  uController.Negociacao in 'Controller\uController.Negociacao.pas',
+  uDAO.Negociacao in 'DAO\uDAO.Negociacao.pas',
+  uModel.Negociacao in 'Model\uModel.Negociacao.pas',
+  uView.PesquisaNegociacao in 'View\uView.PesquisaNegociacao.pas' {frmViewPesquisaNegociacao};
 
 {$R *.res}
 
@@ -34,5 +42,8 @@ begin
   Application.MainFormOnTaskbar := True;
   ReportMemoryLeaksOnShutdown := True;
   Application.CreateForm(TfrmViewPrincipal, frmViewPrincipal);
+  Application.CreateForm(TfrmViewCadastroLimiteCredito, frmViewCadastroLimiteCredito);
+  Application.CreateForm(TfrmViewPesquisaLimiteCredito, frmViewPesquisaLimiteCredito);
+  Application.CreateForm(TfrmViewPesquisaNegociacao, frmViewPesquisaNegociacao);
   Application.Run;
 end.

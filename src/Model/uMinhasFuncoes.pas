@@ -2,8 +2,12 @@ unit uMinhasFuncoes;
 
 interface
 
+uses uTypes;
+
+
   function CPFValido(sCPF: String): Boolean;
   function CNPJValido(sCNPJ: String): Boolean;
+  function TStatusToString(pStatus:TStatus):String;
 
 implementation
 
@@ -101,5 +105,19 @@ begin
 
 end;
 
+
+function TStatusToString(pStatus:TStatus):String;
+var
+  sAux: String;
+begin
+  case pStatus of
+    tpPendente:  sAux := 'PE';
+    tpAprovado:  sAux := 'AP';
+    tpConcluido: sAux := 'CO';
+    tpCancelado: sAux := 'CA';
+  end;
+
+  Result := sAux;
+end;
 
 end.
