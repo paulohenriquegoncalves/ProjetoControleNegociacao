@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Grids,
   Vcl.DBGrids, Vcl.ExtCtrls, uController.Conexao, uController.Negociacao, uTypes,
-  Vcl.DBCtrls, uController.Produtor, uController.Distribuidor;
+  Vcl.DBCtrls, uController.Produtor, uController.Distribuidor, RLReport;
 
 type
   TfrmViewPesquisaNegociacao = class(TfrmViewPesquisaPadrao)
@@ -28,6 +28,41 @@ type
     memTblProdutor: TFDMemTable;
     IntegerField1: TIntegerField;
     WideStringField1: TWideStringField;
+    rptNegociacoes: TRLReport;
+    btnImprimir: TButton;
+    RLBand1: TRLBand;
+    RLSystemInfo1: TRLSystemInfo;
+    RLLabel1: TRLLabel;
+    RLSystemInfo2: TRLSystemInfo;
+    RLBand2: TRLBand;
+    RLLabel2: TRLLabel;
+    RLLabel3: TRLLabel;
+    RLLabel4: TRLLabel;
+    RLLabel5: TRLLabel;
+    RLLabel6: TRLLabel;
+    RLBand3: TRLBand;
+    RLDBText1: TRLDBText;
+    RLDBText2: TRLDBText;
+    RLDBText3: TRLDBText;
+    RLDBText4: TRLDBText;
+    RLDBText5: TRLDBText;
+    RLBand4: TRLBand;
+    RLSystemInfo3: TRLSystemInfo;
+    RLSystemInfo4: TRLSystemInfo;
+    RLLabel7: TRLLabel;
+    RLLabel8: TRLLabel;
+    RLLabel9: TRLLabel;
+    RLDBText6: TRLDBText;
+    RLDBText7: TRLDBText;
+    RLDBText8: TRLDBText;
+    memTabelaIDNEGOCIACAO: TIntegerField;
+    memTabelaNOMEPRODUTOR: TWideStringField;
+    memTabelaNOMEDISTRIBUIDOR: TWideStringField;
+    memTabelaSTATUS: TWideStringField;
+    memTabelaDATA_NEGOCIACAO: TDateField;
+    memTabelaTOTAL_NEGOCIACAO: TFMTBCDField;
+    memTabelaLIMITE_CREDITO_CADASTRADO: TFMTBCDField;
+    memTabelaLIMITE_CREDITO_DISPONIVEL: TFMTBCDField;
     procedure btnExcluirClick(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
@@ -35,6 +70,11 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
+    procedure RLDBText6BeforePrint(Sender: TObject; var AText: string;
+      var PrintIt: Boolean);
+    procedure RLDBText4BeforePrint(Sender: TObject; var AText: string;
+      var PrintIt: Boolean);
   private
     { Private declarations }
     procedure PesquisarNegociacao;
@@ -192,6 +232,34 @@ end;
 procedure TfrmViewPesquisaNegociacao.PesquisarNegociacao;
 begin
   inherited;
+
+end;
+
+procedure TfrmViewPesquisaNegociacao.RLDBText4BeforePrint(Sender: TObject; var AText: string; var PrintIt: Boolean);
+begin
+  inherited;
+  if AText = 'PE' then
+    AText := 'Pendente'
+  else if AText = 'AP' then
+    AText := 'Aprovado'
+  else if AText = 'CO' then
+    AText := 'Concluído'
+  else if AText = 'CA' then
+    AText := 'Cancelado';
+end;
+
+procedure TfrmViewPesquisaNegociacao.RLDBText6BeforePrint(Sender: TObject; var AText: string; var PrintIt: Boolean);
+begin
+  inherited;
+  AText := FormatCurr('##,##0.00', StrToCurrDef(AText,0));
+end;
+
+procedure TfrmViewPesquisaNegociacao.btnImprimirClick(Sender: TObject);
+begin
+  inherited;
+  if ((memTabela.Active) and (memTabela.RecordCount > 0)) then
+    rptNegociacoes.Preview
+  else ShowMessage('Não há dados a serem impressos');
 
 end;
 

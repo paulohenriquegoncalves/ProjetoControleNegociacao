@@ -2,8 +2,8 @@ object frmViewPrincipal: TfrmViewPrincipal
   Left = 0
   Top = 0
   Caption = 'Controle de negocia'#231#227'o'
-  ClientHeight = 442
-  ClientWidth = 923
+  ClientHeight = 723
+  ClientWidth = 1103
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
