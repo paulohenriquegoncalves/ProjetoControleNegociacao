@@ -30,9 +30,13 @@ O projeto esta estruturado no padrão MVC (Modelo / Visão / Controle) onde:
 <i>Exemplo: uDAO.Produtor<i/>    
 <p>  
 <img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/DAO.png" alt="DAO">
-
-  
-
+<p>
+<b>Banco de dados: </b>Foi utilizado o FIREBIRD como SGBD da aplicação. Também foi utilizado o FIREDAC como componente de conexão.
+<p>  
+Os scripts de criação do banco estão na pasta "ProjetoControleNegociacao/docs/" e o banco de dados já armazenado na pasta "ProjetoControleNegociacao/data/"
+<p>  
+<img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/banco_dados.png" alt="bancodados">
+<p>  
 <b>Automação de testes unitários - DUnitX: </b>Como trabalhamos com POO nesse projeto é interessante utilizar o recurso DUNIT do Delphi para implementação de testes unitários. Para aqueles que não conhecem o recurso eu aconselho ler o artigo abaixo que mostra de forma bem simples a utilização de testes no Delphi. 
  <p>
  https://blogs.embarcadero.com/learn-how-to-do-unit-testing-in-delphi-with-the-powerful-dunitx-framework/  
