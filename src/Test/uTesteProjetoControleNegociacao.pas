@@ -13,17 +13,26 @@ type
   public
     [Setup]
     procedure Setup;
+
     [TearDown]
     procedure TearDown;
-    // Sample Methods
-    // Simple single Test
+
     [Test]
-    procedure Test1;
+    procedure TestProdutorNomeObrigatorio;
+
+    [Test]
+    procedure TestProdutorCPFInvalido;
+
+    [Test]
+    procedure TestProdutorCNPJInvalido;
+
     // Test with TestCase Attribute to supply parameters.
+{
     [Test]
     [TestCase('TestA','1,2')]
     [TestCase('TestB','3,4')]
     procedure Test2(const AValue1 : Integer;const AValue2 : Integer);
+}
   end;
 
 implementation
@@ -43,28 +52,36 @@ begin
     FreeAndNil(controllerProdutor);
 end;
 
-procedure TMyTestObject.Test1;
+procedure TMyTestObject.TestProdutorNomeObrigatorio;
 begin
-  try
-    controllerProdutor.ModelProdutor.CodigoProdutor  := 1;
-    controllerProdutor.ModelProdutor.NomeProdutor    := '';
-    controllerProdutor.ModelProdutor.CPFCNPJ         := '123';
-    controllerProdutor.ModelProdutor.ValidarAtributos;
-  except
-  on E: Exception do
-  begin
-    //Assert.AreEqual<ENomeObrigatorio>(E, ENomeObrigatorio,'Errou');
-  end;
-
-  end;
-
-
+  controllerProdutor.ModelProdutor.CodigoProdutor  := 1;
+  controllerProdutor.ModelProdutor.NomeProdutor    := '';
+  controllerProdutor.ModelProdutor.CPFCNPJ         := '';
+  Assert.WillRaise(controllerProdutor.ModelProdutor.ValidarAtributos, ENomeObrigatorio, '');
 end;
 
+procedure TMyTestObject.TestProdutorCNPJInvalido;
+begin
+  controllerProdutor.ModelProdutor.CodigoProdutor  := 1;
+  controllerProdutor.ModelProdutor.NomeProdutor    := 'Paulo Teste';
+  controllerProdutor.ModelProdutor.CPFCNPJ         := '11111111111111';
+  Assert.WillRaise(controllerProdutor.ModelProdutor.ValidarAtributos, ECNPJCPFInvalido, '');
+end;
+
+procedure TMyTestObject.TestProdutorCPFInvalido;
+begin
+  controllerProdutor.ModelProdutor.CodigoProdutor  := 1;
+  controllerProdutor.ModelProdutor.NomeProdutor    := 'Paulo Teste';
+  controllerProdutor.ModelProdutor.CPFCNPJ         := '22222222222';
+  Assert.WillRaise(controllerProdutor.ModelProdutor.ValidarAtributos, ECNPJCPFInvalido, '');
+end;
+
+
+{
 procedure TMyTestObject.Test2(const AValue1 : Integer;const AValue2 : Integer);
 begin
 end;
-
+}
 initialization
   TDUnitX.RegisterTestFixture(TMyTestObject);
 
