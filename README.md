@@ -42,3 +42,18 @@ Os scripts de criação do banco estão na pasta "ProjetoControleNegociacao/docs
  https://blogs.embarcadero.com/learn-how-to-do-unit-testing-in-delphi-with-the-powerful-dunitx-framework/  
 <p>  
 <img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/testes_unitarios.png" alt="DUNITX">  
+<p>
+<b>Cadastros: </b> Para esse projeto não foi utilizado nenhum componente de terceiros ou frameworks. Também não foram feitas muitas validações em tela. O intuito foi mostrar que é possível contruir algo do zero utilizando tudo que é nativo do Delphi.  
+<p> 
+<img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/cadastro_produtos.png" alt="cadastroproduto">
+<p>
+<img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/cadastro_distribuidor.png" alt="cadastrodistribuidor">
+<p>
+<img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/cadastro_produtor.png" alt="cadastroprodutor">
+<p> 
+<img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/limite_credito.png" alt="limtecredito">
+<p> 
+ <b>Relatório: </b>Como o Delphi Community 10.4 não trás nenhum gerador de relatório padrão eu utilizei o FORTES REPORT que é um gerador de relatório OPEN SOURCE e esta disponível para baixar no GIT HUB: https://github.com/fortesinformatica/fortesreport-ce.git
+<p>
+<img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/relatorio_negociacao.png" alt="relatorio">
+ 
