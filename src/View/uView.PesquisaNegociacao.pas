@@ -63,6 +63,7 @@ type
     memTabelaTOTAL_NEGOCIACAO: TFMTBCDField;
     memTabelaLIMITE_CREDITO_CADASTRADO: TFMTBCDField;
     memTabelaLIMITE_CREDITO_DISPONIVEL: TFMTBCDField;
+    Button1: TButton;
     procedure btnExcluirClick(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);

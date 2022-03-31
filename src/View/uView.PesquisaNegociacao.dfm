@@ -9,7 +9,7 @@ inherited frmViewPesquisaNegociacao: TfrmViewPesquisaNegociacao
   TextHeight = 13
   inherited pnlGrid: TPanel
     Width = 875
-    ExplicitWidth = 923
+    ExplicitWidth = 875
     inherited DBGrid1: TDBGrid
       Top = 113
       Width = 873
@@ -79,7 +79,6 @@ inherited frmViewPesquisaNegociacao: TfrmViewPesquisaNegociacao
       Align = alTop
       Caption = 'Filtros'
       TabOrder = 1
-      ExplicitWidth = 921
       object Label11: TLabel
         Left = 10
         Top = 19
@@ -488,15 +487,46 @@ inherited frmViewPesquisaNegociacao: TfrmViewPesquisaNegociacao
   end
   inherited pnlBotores: TPanel
     Width = 875
-    ExplicitWidth = 923
+    ExplicitWidth = 875
+    inherited btnIncluir: TButton
+      Width = 140
+      ExplicitWidth = 140
+    end
+    inherited btnAlterar: TButton
+      Left = 151
+      Width = 140
+      ExplicitLeft = 151
+      ExplicitWidth = 140
+    end
+    inherited btnExcluir: TButton
+      Left = 295
+      Width = 140
+      ExplicitLeft = 295
+      ExplicitWidth = 140
+    end
+    inherited btnSair: TButton
+      Left = 726
+      Width = 140
+      ExplicitLeft = 726
+      ExplicitWidth = 140
+    end
     object btnImprimir: TButton
-      Left = 672
+      Left = 585
       Top = 5
-      Width = 150
+      Width = 140
       Height = 25
-      Caption = 'Imprimir'
+      Caption = '&Imprimir relat'#243'rio'
       TabOrder = 4
       OnClick = btnImprimirClick
+    end
+    object Button1: TButton
+      Left = 441
+      Top = 5
+      Width = 140
+      Height = 25
+      Caption = 'S&tatus'
+      TabOrder = 5
+      OnClick = btnExcluirClick
     end
   end
   inherited memTabela: TFDMemTable
