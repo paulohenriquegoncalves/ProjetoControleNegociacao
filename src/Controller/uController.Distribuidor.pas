@@ -12,8 +12,8 @@ type
   public
     property ModelDistribuidor: TModelDistribuidor read FModelDistribuidor write FModelDistribuidor;
 
-    function persistir: Boolean;
-    function selecionar: TFDQuery;
+    function Persistir: Boolean;
+    function Selecionar: TFDQuery;
 
     constructor Create;
     destructor Destroy; override;
@@ -35,12 +35,12 @@ end;
 
 function TControllerDistribuidor.persistir: Boolean;
 begin
-  Result := FModelDistribuidor.persistir;
+  Result := FModelDistribuidor.Persistir;
 end;
 
 function TControllerDistribuidor.selecionar: TFDQuery;
 begin
-  Result := FModelDistribuidor.selecionar;
+  Result := FModelDistribuidor.Selecionar;
 end;
 
 end.

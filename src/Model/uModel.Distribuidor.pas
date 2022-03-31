@@ -27,8 +27,8 @@ type
     property CNPJ: String                     read FCNPJ                   write FCNPJ;
     property TipoOperacao: TOperacao          read FTipoOperacao      write FTipoOperacao;
 
-    function persistir: Boolean;
-    function selecionar: TFDQuery;
+    function Persistir: Boolean;
+    function Selecionar: TFDQuery;
     procedure ValidarAtributos;
 
   published
@@ -40,7 +40,7 @@ uses uDAO.Distribuidor, uExcessoes, uMinhasFuncoes;
 
 { TModelCliente }
 
-function TModelDistribuidor.persistir: Boolean;
+function TModelDistribuidor.Persistir: Boolean;
 var
   daoDistribuidor: TDAODistribuidor;
 begin
@@ -67,7 +67,7 @@ begin
   end;
 end;
 
-function TModelDistribuidor.selecionar: TFDQuery;
+function TModelDistribuidor.Selecionar: TFDQuery;
 var
   daoDistribuidor: TDAODistribuidor;
 begin

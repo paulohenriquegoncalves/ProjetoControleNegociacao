@@ -17,10 +17,10 @@ type
 
   public
 
-    function selecionarProduto: TFDQuery;
-    function incluir(ModelProduto: TModelProduto): Boolean;
-    function excluir(ModelProduto: TModelProduto): Boolean;
-    function alterar(ModelProduto: TModelProduto): Boolean;
+    function SelecionarProduto: TFDQuery;
+    function Incluir(ModelProduto: TModelProduto): Boolean;
+    function Excluir(ModelProduto: TModelProduto): Boolean;
+    function Alterar(ModelProduto: TModelProduto): Boolean;
 
   published
 
@@ -33,7 +33,7 @@ uses
 
 { TModelCliente }
 
-function TDAOProduto.alterar(ModelProduto: TModelProduto): Boolean;
+function TDAOProduto.Alterar(ModelProduto: TModelProduto): Boolean;
 var
   qryProduto: TFDQuery;
 begin
@@ -56,7 +56,7 @@ begin
 
 end;
 
-function TDAOProduto.excluir(ModelProduto: TModelProduto): Boolean;
+function TDAOProduto.Excluir(ModelProduto: TModelProduto): Boolean;
 var
   qryProduto: TFDQuery;
 begin
@@ -73,7 +73,7 @@ begin
   end;
 end;
 
-function TDAOProduto.incluir(ModelProduto: TModelProduto): Boolean;
+function TDAOProduto.Incluir(ModelProduto: TModelProduto): Boolean;
 var
   qryProduto: TFDQuery;
 begin
@@ -93,7 +93,7 @@ begin
   end;
 end;
 
-function TDAOProduto.selecionarProduto: TFDQuery;
+function TDAOProduto.SelecionarProduto: TFDQuery;
 var
   qryProduto: TFDQuery;
 begin

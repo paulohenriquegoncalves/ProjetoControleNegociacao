@@ -17,10 +17,10 @@ type
 
   public
 
-    function selecionarDistribuidor: TFDQuery;
-    function incluir(ModelDistribuidor: TModelDistribuidor): Boolean;
-    function excluir(ModelDistribuidor: TModelDistribuidor): Boolean;
-    function alterar(ModelDistribuidor: TModelDistribuidor): Boolean;
+    function SelecionarDistribuidor: TFDQuery;
+    function Incluir(ModelDistribuidor: TModelDistribuidor): Boolean;
+    function Excluir(ModelDistribuidor: TModelDistribuidor): Boolean;
+    function Alterar(ModelDistribuidor: TModelDistribuidor): Boolean;
 
   published
 
@@ -33,7 +33,7 @@ uses
 
 { TModelCliente }
 
-function TDAODistribuidor.alterar(ModelDistribuidor: TModelDistribuidor): Boolean;
+function TDAODistribuidor.Alterar(ModelDistribuidor: TModelDistribuidor): Boolean;
 var
   qryDistribuidor: TFDQuery;
 begin
@@ -56,7 +56,7 @@ begin
 
 end;
 
-function TDAODistribuidor.excluir(ModelDistribuidor: TModelDistribuidor): Boolean;
+function TDAODistribuidor.Excluir(ModelDistribuidor: TModelDistribuidor): Boolean;
 var
   qryDistribuidor: TFDQuery;
 begin
@@ -73,7 +73,7 @@ begin
   end;
 end;
 
-function TDAODistribuidor.incluir(ModelDistribuidor: TModelDistribuidor): Boolean;
+function TDAODistribuidor.Incluir(ModelDistribuidor: TModelDistribuidor): Boolean;
 var
   qryDistribuidor: TFDQuery;
 begin
@@ -93,7 +93,7 @@ begin
   end;
 end;
 
-function TDAODistribuidor.selecionarDistribuidor: TFDQuery;
+function TDAODistribuidor.SelecionarDistribuidor: TFDQuery;
 var
   qryDistribuidor: TFDQuery;
 begin

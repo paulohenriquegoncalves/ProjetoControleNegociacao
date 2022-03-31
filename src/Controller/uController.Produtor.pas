@@ -44,18 +44,18 @@ end;
 
 function TControllerProdutor.PersistirProdutor: Boolean;
 begin
-  Result := FModelProdutor.persistir;
+  Result := FModelProdutor.Persistir;
 end;
 
 function TControllerProdutor.SelecionarProdutor: TFDQuery;
 begin
-  Result := FModelProdutor.selecionar;
+  Result := FModelProdutor.Selecionar;
 end;
 
 
 function TControllerProdutor.PersistirLimiteCredito: Boolean;
 begin
-  Result := FModelLimiteCredito.persistir;
+  Result := FModelLimiteCredito.Persistir;
 end;
 
 function TControllerProdutor.SelecionarLimiteCredito(piCodigoProdutor:Integer): TFDQuery;

@@ -12,8 +12,8 @@ type
   public
     property ModelProduto: TModelProduto read FModelProduto write FModelProduto;
 
-    function persistir: Boolean;
-    function selecionar: TFDQuery;
+    function Persistir: Boolean;
+    function Selecionar: TFDQuery;
 
     constructor Create;
     destructor Destroy; override;
@@ -33,14 +33,14 @@ begin
   inherited;
 end;
 
-function TControllerProduto.persistir: Boolean;
+function TControllerProduto.Persistir: Boolean;
 begin
-  Result := FModelProduto.persistir;
+  Result := FModelProduto.Persistir;
 end;
 
-function TControllerProduto.selecionar: TFDQuery;
+function TControllerProduto.Selecionar: TFDQuery;
 begin
-  Result := FModelProduto.selecionar;
+  Result := FModelProduto.Selecionar;
 end;
 
 end.
