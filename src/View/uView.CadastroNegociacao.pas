@@ -15,10 +15,8 @@ type
     Label1: TLabel;
     procedure FormShow(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
-    procedure cbxCPFCNPJChange(Sender: TObject);
   private
     { Private declarations }
-    procedure SetMascaraDocumento;
   public
     { Public declarations }
   end;
@@ -34,6 +32,7 @@ uses uView.PesquisaNegociacao, uExcessoes, uTypes;
 
 procedure TfrmViewCadastroNegociacao.btnSalvarClick(Sender: TObject);
 begin
+{
   try
     frmViewPesquisaNegociacao.controllerNegociacao.ModelNegociacao.TipoOperacao    := frmViewPesquisaNegociacao.TipoOperacao;
     frmViewPesquisaNegociacao.controllerNegociacao.ModelNegociacao.CodigoNegociacao  := StrToIntDef(edtCodigoNegociacao.Text,0);
@@ -63,17 +62,13 @@ begin
     end;
   end;
   inherited;
-end;
-
-procedure TfrmViewCadastroNegociacao.cbxCPFCNPJChange(Sender: TObject);
-begin
-  inherited;
-  Self.SetMascaraDocumento;
+}
 end;
 
 procedure TfrmViewCadastroNegociacao.FormShow(Sender: TObject);
 begin
   inherited;
+{
   if frmViewPesquisaNegociacao.TipoOperacao = tpInclusao then
   begin
     edtCodigoNegociacao.Clear;
@@ -93,14 +88,8 @@ begin
     else cbxCPFCNPJ.ItemIndex := 1;
     Self.SetMascaraDocumento;
   end;
+}
 end;
 
-procedure TfrmViewCadastroNegociacao.SetMascaraDocumento;
-begin
-  case cbxCPFCNPJ.ItemIndex of
-    0: mskEdtCPFCNPJ.EditMask := '!999.999.999-99;0;';
-    1: mskEdtCPFCNPJ.EditMask := '!99.999.999/9999-99;0';
-  end;
-end;
 
 end.

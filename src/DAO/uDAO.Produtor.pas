@@ -11,17 +11,13 @@ uses
   FireDAC.Phys.FB, uController.Conexao, uModel.Produtor;
 
 type
-
   TDAOProdutor = Class
   private
-
   public
-
-    function selecionarProdutor: TFDQuery;
-    function incluir(ModelProdutor: TModelProdutor): Boolean;
-    function excluir(ModelProdutor: TModelProdutor): Boolean;
-    function alterar(ModelProdutor: TModelProdutor): Boolean;
-
+    function SelecionarProdutor: TFDQuery;
+    function Incluir(ModelProdutor: TModelProdutor): Boolean;
+    function Excluir(ModelProdutor: TModelProdutor): Boolean;
+    function Alterar(ModelProdutor: TModelProdutor): Boolean;
   published
 
   End;
@@ -31,9 +27,7 @@ implementation
 uses
   Vcl.Dialogs;
 
-{ TModelCliente }
-
-function TDAOProdutor.alterar(ModelProdutor: TModelProdutor): Boolean;
+function TDAOProdutor.Alterar(ModelProdutor: TModelProdutor): Boolean;
 var
   qryProdutor: TFDQuery;
 begin
@@ -49,14 +43,14 @@ begin
       FreeAndNil(qryProdutor);
 
     end;
-    result := True;
+    Result := True;
   except
-    result := False;
+    Result := False;
   end;
 
 end;
 
-function TDAOProdutor.excluir(ModelProdutor: TModelProdutor): Boolean;
+function TDAOProdutor.Excluir(ModelProdutor: TModelProdutor): Boolean;
 var
   qryProdutor: TFDQuery;
 begin

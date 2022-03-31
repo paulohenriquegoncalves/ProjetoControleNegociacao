@@ -27,8 +27,8 @@ type
     property CPFCNPJ: String              read FCPFCNPJ            write FCPFCNPJ;
     property TipoOperacao: TOperacao      read FTipoOperacao       write FTipoOperacao;
 
-    function persistir: Boolean;
-    function selecionar: TFDQuery;
+    function Persistir: Boolean;
+    function Selecionar: TFDQuery;
     procedure ValidarAtributos;
 
   published
@@ -40,12 +40,12 @@ uses uDAO.Produtor, uExcessoes, uMinhasFuncoes;
 
 { TModelCliente }
 
-function TModelProdutor.persistir: Boolean;
+function TModelProdutor.Persistir: Boolean;
 var
   daoProdutor: TDAOProdutor;
 begin
 
-  result := false;
+  Result := False;
 
   daoProdutor := TDAOProdutor.Create;
   try
@@ -53,13 +53,13 @@ begin
       tpInclusao:
       begin
         Self.ValidarAtributos;
-        Result := daoProdutor.incluir(self);
+        Result := daoProdutor.Incluir(self);
       end;
-      tpExclusao:  Result := daoProdutor.excluir(self);
+      tpExclusao:  Result := daoProdutor.Excluir(self);
       tpAlteracao:
       begin
         Self.ValidarAtributos;
-        Result := daoProdutor.alterar(self);
+        Result := daoProdutor.Alterar(self);
       end;
     end;
   finally
