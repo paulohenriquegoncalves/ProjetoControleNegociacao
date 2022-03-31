@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{76121C4F-F3D8-4E18-ACD5-6EA777670B16}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ProjetoControleNegociacao.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TestProjetoControleNegociacao.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ProjetoControleNegociacao">
+        <MSBuild Projects="ProjetoControleNegociacao.dproj"/>
+    </Target>
+    <Target Name="ProjetoControleNegociacao:Clean">
+        <MSBuild Projects="ProjetoControleNegociacao.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProjetoControleNegociacao:Make">
+        <MSBuild Projects="ProjetoControleNegociacao.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestProjetoControleNegociacao">
+        <MSBuild Projects="TestProjetoControleNegociacao.dproj"/>
+    </Target>
+    <Target Name="TestProjetoControleNegociacao:Clean">
+        <MSBuild Projects="TestProjetoControleNegociacao.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestProjetoControleNegociacao:Make">
+        <MSBuild Projects="TestProjetoControleNegociacao.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ProjetoControleNegociacao;TestProjetoControleNegociacao"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ProjetoControleNegociacao:Clean;TestProjetoControleNegociacao:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ProjetoControleNegociacao:Make;TestProjetoControleNegociacao:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

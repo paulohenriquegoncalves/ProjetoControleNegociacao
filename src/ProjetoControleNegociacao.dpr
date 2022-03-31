@@ -33,7 +33,8 @@ uses
   uController.Negociacao in 'Controller\uController.Negociacao.pas',
   uDAO.Negociacao in 'DAO\uDAO.Negociacao.pas',
   uModel.Negociacao in 'Model\uModel.Negociacao.pas',
-  uView.PesquisaNegociacao in 'View\uView.PesquisaNegociacao.pas' {frmViewPesquisaNegociacao};
+  uView.PesquisaNegociacao in 'View\uView.PesquisaNegociacao.pas' {frmViewPesquisaNegociacao},
+  uView.CadastroNegociacao in 'View\uView.CadastroNegociacao.pas' {frmViewCadastroNegociacao};
 
 {$R *.res}
 
@@ -45,5 +46,6 @@ begin
   Application.CreateForm(TfrmViewCadastroLimiteCredito, frmViewCadastroLimiteCredito);
   Application.CreateForm(TfrmViewPesquisaLimiteCredito, frmViewPesquisaLimiteCredito);
   Application.CreateForm(TfrmViewPesquisaNegociacao, frmViewPesquisaNegociacao);
+  Application.CreateForm(TfrmViewCadastroNegociacao, frmViewCadastroNegociacao);
   Application.Run;
 end.
