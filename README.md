@@ -30,3 +30,11 @@ O projeto esta estruturado no padrão MVC (Modelo / Visão / Controle) onde:
 <i>Exemplo: uDAO.Produtor<i/>    
 <p>  
 <img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/DAO.png" alt="DAO">
+
+  
+
+<b>Automação de testes unitários - DUnitX: </b>Como trabalhamos com POO nesse projeto é interessante utilizar o recurso DUNIT do Delphi para implementação de testes unitários. Para aqueles que não conhecem o recurso eu aconselho ler o artigo abaixo que mostra de forma bem simples a utilização de testes no Delphi. 
+ <p>
+ https://blogs.embarcadero.com/learn-how-to-do-unit-testing-in-delphi-with-the-powerful-dunitx-framework/  
+<p>  
+<img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/testes_unitarios.png" alt="DUNITX">  
