@@ -5,6 +5,9 @@ O projeto consiste em 3 telas cadastros e 1 tela de negociação.
 Cadastros de Produto, Distribuidor e Produtor (com limite de crédito por distribuidor).
 <p>
 O projeto esta estruturado no padrão MVC (Modelo / Visão / Controle) onde:
+<p>  
+<img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/implementando%20arquitetura%20mvc.png" alt="MVC">  
+  
 <p>
 <b>1º Visão - Pasta View:</b> Ficam os "forms" do sistema (*.dfm) e (*.pas). Todos os formulários utilizam a seguinte nomeclatura: "uView.*"
 <br/>
