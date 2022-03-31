@@ -9,12 +9,15 @@ O projeto esta estruturado no padrão MVC (Modelo / Visão / Controle) onde:
 <img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/implementando%20arquitetura%20mvc.png" alt="MVC">    
 <p>
 <b>1º Visão - Pasta View:</b> Ficam os "forms" do sistema (*.dfm) e (*.pas). Todos os formulários utilizam a seguinte nomeclatura: "uView.*"
-<br/>
+<p>
 <i>Exemplo: uView.PesquisaProduto e uView.CadastroProduto<i/>
 <p>
 <i>Observação: Os formulários de cadsastro e pesquisa são herdados por "formularios padrão" que são "uView.CadastroPadrao" e "uView.PesquisaPadrao".<i/>  
 <p>
 <img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/heranca%20de%20formulario.png" alt="HerancaForm">      
-  
-  
-  
+<p>
+<b>2º Controle - Pasta Controller:</b> Ficam os "controladores" do sistema. Esse controlador é uma ponte entre a visão (formulários) e os modelos (entidades de negócio). Todos os controle utilizam a seguinte nomeclatura: "uController.*"  
+<p>
+<i>Exemplo: uController.Produtor<i/>
+<p>
+<img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/controladores.png" alt="controladores">  
