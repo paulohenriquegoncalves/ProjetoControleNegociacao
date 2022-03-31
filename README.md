@@ -28,4 +28,5 @@ O projeto esta estruturado no padrão MVC (Modelo / Visão / Controle) onde:
 <p>
 <b>Camada de persistência - DAO: </b> Para deixar o código mais desacoplado e mais organizado foi criada uma camada de persistência dos "modelos" no banco de dados. É nessa camada que escrevemos os DMLs (select, insert, update e delete). Todos os objetos DAO utilizam a seguinte nomeclatura: "uDAO.*"
 <i>Exemplo: uDAO.Produtor<i/>    
-  
+<p>  
+<img src="https://github.com/paulohenriquegoncalves/ProjetoControleNegociacao/blob/master/docs/DAO.png" alt="DAO">
