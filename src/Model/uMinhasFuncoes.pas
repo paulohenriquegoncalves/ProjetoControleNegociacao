@@ -8,6 +8,7 @@ uses uTypes;
   function CPFValido(sCPF: String): Boolean;
   function CNPJValido(sCNPJ: String): Boolean;
   function TStatusToString(pStatus:TStatus):String;
+  function StatusSiglaToStatusTexto(sStatus:String):String;
 
 implementation
 
@@ -120,4 +121,15 @@ begin
   Result := sAux;
 end;
 
+function StatusSiglaToStatusTexto(sStatus:String):String;
+begin
+  if sStatus = 'PE' then
+    Result := 'Pendente'
+  else if sStatus = 'AP' then
+    Result := 'Aprovado'
+  else if sStatus = 'CO' then
+    Result := 'Concluído'
+  else if sStatus = 'CA' then
+    Result := 'Cancelado';
+end;
 end.

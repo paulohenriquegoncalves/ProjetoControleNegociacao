@@ -99,23 +99,34 @@ var
 begin
   qryNegociacao := TControllerConexao.getInstance().daoConexao.CriarQuery;
 
+  qryNegociacao.SQL.Add(' SELECT                                                                               ');
+  qryNegociacao.SQL.Add('  TBL.IDNEGOCIACAO,                                                                   ');
+  qryNegociacao.SQL.Add('  TBL.CODPRODUTOR, TBL.NOMEPRODUTOR,                                                  ');
+  qryNegociacao.SQL.Add('  TBL.CODDISTRIBUIDOR, TBL.NOMEDISTRIBUIDOR,                                          ');
+  qryNegociacao.SQL.Add('  TBL.STATUS, TBL.DATA_NEGOCIACAO,                                                    ');
+
+  qryNegociacao.SQL.Add('  TBL.TOTAL_NEGOCIACAO, TBL.LIMITE_CREDITO_CADASTRADO, TBL.VENDAS_APROVADAS,          ');
+  qryNegociacao.SQL.Add('  (TBL.LIMITE_CREDITO_CADASTRADO - TBL.VENDAS_APROVADAS) AS LIMITE_CREDITO_DISPONIVEL ');
+
+  qryNegociacao.SQL.Add(' FROM (                                                                               ');
+
   qryNegociacao.SQL.Add(' SELECT                                                                        ');
   qryNegociacao.SQL.Add('  N.IDNEGOCIACAO,                                                              ');
   qryNegociacao.SQL.Add('  N.CODPRODUTOR, P.NOMEPRODUTOR,                                               ');
   qryNegociacao.SQL.Add('  N.CODDISTRIBUIDOR, D.NOMEDISTRIBUIDOR,                                       ');
   qryNegociacao.SQL.Add('  N.STATUS, N.DATA_NEGOCIACAO,                                                 ');
 
-  qryNegociacao.SQL.Add('   (SELECT SUM(I.QUANTIDADE * PO.PRECOVENDAPRODUTO)                            ');
+  qryNegociacao.SQL.Add('   (SELECT COALESCE(SUM(I.QUANTIDADE * PO.PRECOVENDAPRODUTO),0)                ');
   qryNegociacao.SQL.Add('    FROM TBL_NEGOCIACAO_ITENS I                                                ');
   qryNegociacao.SQL.Add('    INNER JOIN TBL_PRODUTO PO ON I.CODPRODUTO = PO.CODPRODUTO                  ');
   qryNegociacao.SQL.Add('    WHERE I.IDNEGOCIACAO = N.IDNEGOCIACAO) AS TOTAL_NEGOCIACAO,                ');
 
-  qryNegociacao.SQL.Add(' 	(SELECT LIMITE_CREDITO                                                      ');
+  qryNegociacao.SQL.Add(' 	(SELECT COALESCE(LIMITE_CREDITO,0)                                          ');
   qryNegociacao.SQL.Add(' 	 FROM TBL_LIMITE_CREDITO L                                                  ');
   qryNegociacao.SQL.Add('    WHERE L.CODPRODUTOR    = N.CODPRODUTOR                                     ');
   qryNegociacao.SQL.Add(' 	 AND   L.CODDISTRIBUIDOR = N.CODDISTRIBUIDOR) AS LIMITE_CREDITO_CADASTRADO, ');
 
-  qryNegociacao.SQL.Add('	  (SELECT SUM(I.QUANTIDADE * PO.PRECOVENDAPRODUTO)                            ');
+  qryNegociacao.SQL.Add('	  (SELECT COALESCE(SUM(I.QUANTIDADE * PO.PRECOVENDAPRODUTO),0)                ');
   qryNegociacao.SQL.Add('	   FROM TBL_NEGOCIACAO_ITENS I                                                ');
   qryNegociacao.SQL.Add('	   INNER JOIN TBL_PRODUTO PO ON I.CODPRODUTO = PO.CODPRODUTO                  ');
   qryNegociacao.SQL.Add('	   WHERE EXISTS (SELECT 1 FROM TBL_NEGOCIACAO N2                              ');
@@ -147,6 +158,12 @@ begin
     qryNegociacao.SQL.Add(' AND N.STATUS = :STATUS');
     qryNegociacao.ParamByName('STATUS').AsString :=  TStatusToString( ModelNegociacao.Status);
   end;
+
+
+  qryNegociacao.SQL.Add(' ) TBL ');
+  //IMPLEMENTAR ORDENACAO
+
+
 
   qryNegociacao.SQL.SaveToFile('C:\Temp\CONSULTA_NEGOCIACAO.SQL');
   qryNegociacao.Open;
