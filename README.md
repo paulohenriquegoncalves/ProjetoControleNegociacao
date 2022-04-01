@@ -1,4 +1,6 @@
 # ProjetoControleNegociacao
+# Esse projeto encontra-se em desenvolvimento (ainda não finalizado)
+
 Projeto desenvolvimento em Delphi 10.4 Community Edition
 O projeto consiste em 3 telas cadastros e 1 tela de negociação.
 <br/>
